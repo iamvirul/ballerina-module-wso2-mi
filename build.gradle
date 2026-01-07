@@ -18,6 +18,7 @@
 
 plugins {
     id 'net.researchgate.release'
+    id 'jacoco'
 }
 
 allprojects {
@@ -85,4 +86,40 @@ release {
 task build {
     dependsOn ":mi-ballerina:build"
     dependsOn ":mi-tests:test"
+}
+
+jacoco {
+    toolVersion = "0.8.11"
+}
+
+task jacocoAggregatedReport(type: JacocoReport) {
+    dependsOn ":mi-tests:test", ":mi-tests:jacocoTestReport", ":mi-compiler-plugin:jacocoTestReport"
+
+    reports {
+        xml.required = true
+        html.required = true
+        xml.destination file("${buildDir}/reports/jacoco/aggregate/jacocoTestReport.xml")
+        html.destination file("${buildDir}/reports/jacoco/aggregate/html")
+    }
+
+    gradle.projectsEvaluated {
+        // Collect from both mi-tests and mi-compiler-plugin modules
+        def testsProject = project(':mi-tests')
+        def compilerPluginProject = project(':mi-compiler-plugin')
+
+        // Collect execution data from all test modules
+        executionData fileTree(project.rootDir.absolutePath).include("**/build/jacoco/*.exec")
+
+        // Collect class files from both modules
+        classDirectories.from = files([
+            compilerPluginProject.sourceSets.main.output.classesDirs,
+            testsProject.sourceSets.main.output.classesDirs
+        ])
+
+        // Collect source files from both modules
+        sourceDirectories.from = files([
+            compilerPluginProject.sourceSets.main.allSource.srcDirs,
+            testsProject.sourceSets.main.allSource.srcDirs
+        ])
+    }
 }

@@ -23,6 +23,7 @@ jobs:
         with:
           distribution: "temurin"
           java-version: 21.0.3
+          cache: maven
 
       - name: Change to Timestamped Version
         run: |
@@ -46,13 +47,17 @@ jobs:
           packagePAT: ${{ secrets.BALLERINA_BOT_TOKEN }}
           publishUser: ${{ secrets.BALLERINA_BOT_USERNAME }}
           publishPAT: ${{ secrets.BALLERINA_BOT_TOKEN }}
-        run: ./gradlew publish --no-daemon --scan
+        run: |
+          ./gradlew publish --no-daemon --scan
+          ./gradlew jacocoAggregatedReport
 
-      - name: Generate CodeCov Report
+      - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v5
         with:
+          files: ./tests/build/reports/jacoco/test/jacocoTestReport.xml
+          flags: unittests
+          name: main-branch-coverage
           token: ${{ secrets.CODECOV_TOKEN }}
-          slug: wso2-extensions/${{ github.event.repository.name }}
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
