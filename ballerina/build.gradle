@@ -69,7 +69,7 @@ ballerina {
     packageOrganization = packageOrg
     module = packageName
     langVersion = ballerinaLangVersion
-    packagePlatform = "java17"
+    platform = "java17"
 }
 
 task updateTomlFiles {
