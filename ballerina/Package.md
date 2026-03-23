@@ -2,7 +2,7 @@
 
 ## Overview
 
-The `wso2/mi` module provides the capability to generate modules that allow WSO2 Micro Integrator (MI) to run Ballerina transformations. This integration enables you to leverage the powerful transformation capabilities of Ballerina within the WSO2 Micro Integrator environment.
+The `wso2/mi` module provides the capability to generate modules that allow WSO2 Integrator:MI to run Ballerina transformations. This integration enables you to leverage Ballerina's powerful transformation capabilities within the WSO2 Micro Integrator environment.
 
 Unlike Class Mediators, Ballerina is a cloud-native programming language with built-in support for JSON and XML, making data transformations simpler. It also allows the use of available Ballerina language modules and connectors, enabling enhanced functionality and easier connectivity with external systems.
 
