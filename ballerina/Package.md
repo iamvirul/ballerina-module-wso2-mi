@@ -1,4 +1,4 @@
-# Ballerina WSO2 Micro Integrator Module
+# Ballerina module for WSO2 Integrator:MI module generation
 
 ## Overview
 
