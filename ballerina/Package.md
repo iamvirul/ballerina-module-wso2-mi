@@ -74,7 +74,7 @@ The command generates the module zip in the same location.
 
 ## Using with WSO2 MI VS Code Extension
 
-1. Install the [WSO2 Micro Integrator VS Code Extension](https://mi.docs.wso2.com/en/latest/develop/mi-for-vscode/install-wso2-mi-for-vscode/)
+1. Install the [WSO2 Integrator:MI VS Code Extension](https://mi.docs.wso2.com/en/latest/develop/mi-for-vscode/install-wso2-mi-for-vscode/)
 2. Create a new integration project or open an existing project
 3. Add a **Ballerina Module** artifact
 4. Enter a name and version for the module
